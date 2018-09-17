@@ -26,7 +26,8 @@ public class Main {
 
         //gets the busStop id from long and lat input as an Object "BusStopID"//
         BusStopID busID = client
-                .target("https://api-argon.tfl.gov.uk/StopPoint?stopTypes=NaptanPublicBusCoachTram&radius=1000&lat=" + postcodeInfo.result.latitude + "&lon=" + postcodeInfo.result.longitude)
+                .target("https://api-argon.tfl.gov.uk/StopPoint?stopTypes=NaptanPublicBusCoachTram&radius=1000&lat="
+                        + postcodeInfo.result.latitude + "&lon=" + postcodeInfo.result.longitude)
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .get(new GenericType<BusStopID>() {});
 
