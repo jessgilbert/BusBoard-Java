@@ -6,9 +6,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
-import java.util.Scanner;
-
+import java.util.*;
 
 
 public class Main {
@@ -21,16 +19,16 @@ public class Main {
         String stopCode = getCodeInput();
 
         //creates a list of object bus, gets Json file from URL//
-        List<Bus> busList = client
+        ArrayList<Bus> busList = client
                 .target("https://api-argon.tfl.gov.uk")
                 .path("StopPoint/" + stopCode + "/Arrivals")
                 .request(MediaType.APPLICATION_JSON_TYPE)
-                .get(new GenericType<List<Bus>>() {});
+                .get(new GenericType<ArrayList<Bus>>() {});
 
 
 
         //displays all the names and buses//
-        display(busList);
+        display(getClosestBuses(busList));
     }
 
     public static String getCodeInput() {
@@ -46,13 +44,27 @@ public class Main {
 
     }
 
-    public static void display(List<Bus> busList){
+    public static void display(ArrayList<Bus> busList){
 
         //itterates through list and shows time and name for each bus//
         for(int i = 0; i < busList.size(); i++){
             System.out.println("Bus name: " + busList.get(i).getBusName() + " in " + busList.get(i).getTime() + " seconds ");
 
         }
+    }
+
+    public static ArrayList<Bus> getClosestBuses(ArrayList<Bus> busList){
+        //create new list//
+        ArrayList<Bus> closestFive = new ArrayList<>();
+
+        //sorts the objects in order of smallest time//
+        Collections.sort(busList, Comparator.comparing(Bus::getTime));
+
+        //for loop pust the first 5 closest buses//
+        for(int i = 0; i < 5; i++){
+            closestFive.add(busList.get(i));
+        }
+        return closestFive;
     }
 
 
