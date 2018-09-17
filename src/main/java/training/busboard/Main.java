@@ -21,7 +21,20 @@ public class Main {
                 .path("StopPoint/490008660N/Arrivals")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .get(new GenericType<List<Bus>>() {});
+
+
+        //displays all the names and buses//
+        display(busList);
     }
 
+
+    public static void display(List<Bus> busList){
+
+        //itterates through list and shows time and name for each bus//
+        for(int i = 0; i < busList.size(); i++){
+            System.out.println(busList.get(i).getBusName());
+            System.out.println(busList.get(i).getTime());
+        }
+    }
 
 }
