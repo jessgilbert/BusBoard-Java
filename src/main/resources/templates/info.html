@@ -3,23 +3,61 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
 <head>
+
+    <!--styles the html file using css-->
+    <style>
+        div{
+            margin-right: 10%;
+            margin-left: 10%;
+        }
+        td{
+            height: 10px;
+            padding: 1.5%;
+            border-bottom: 1px solid #ddd;
+
+        }
+        table{
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+        }
+        #stopName{
+            padding-top: 2.5%;
+            text-align: left;
+            margin-left: 10%;
+        }
+        #line{
+            text-align: center;
+            width: 7.5%;
+            color: white;
+            font-weight: bold;
+        }
+        #destination{
+            text-align: left;
+            width: 62.5%;
+        }
+        #time{
+            text-align: right;
+            width: 30%;
+        }
+
+
+    </style>
+
     <title>Bus Information</title>
 </head>
 <body>
 <div layout:fragment="content" class="container body-content">
 
-    <h2>My Bus Information</h2>
-
     <!-- This is a nested for loop that displays all the busStops and then the buses that are due-->
     <div th:each="mystop: ${model.busStops}">
-        <h5 th:text="${mystop.commonName}"></h5>
+        <h4 th:text="${mystop.commonName}" id="stopName"></h4>
         <div>
 
             <table  style="width:100%">
                 <tr th:each="mybus: ${mystop.buses}">
-                    <th><span th:text="${mybus.lineName}"></span></th>
-                    <th><span th:text="${mybus.destinationName}"></span></th>
-                    <th><span th:text="${mybus.timeToStation}"></span> mins</th>
+                    <td bgcolor="#D51B1B" id="line"><span th:text="${mybus.lineName}"></span></td>
+                    <td id="destination"><span th:text="${mybus.destinationName}"></span></td>
+                    <td id="time"><span th:text="${mybus.timeToStation}"></span> mins</td>
                 </tr>
 
             </table>
