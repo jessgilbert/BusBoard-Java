@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import training.busboard.Bus;
 import training.busboard.BusStopID;
+import training.busboard.ClosestBuses;
 import training.busboard.Coordinates;
 
 import javax.ws.rs.client.Client;
@@ -60,23 +61,41 @@ public class Website {
                 .get(new GenericType<BusStopID>() {});
 
         //outputs the id of the two nearest stops//
-        System.out.println(busID.stopPoints.get(0).id);
+        System.out.println(busID.stopPoints.get(0).commonName);
         System.out.println(busID.stopPoints.get(1).id);
         System.out.println(busID.stopPoints.get(2).id);
         System.out.println(busID.stopPoints.get(3).id);
 
+        ArrayList<BusStop> busStops = new ArrayList<>();
 
-        ArrayList<Bus> busList = client
-                .target("https://api-argon.tfl.gov.uk/StopPoint/" + busID.stopPoints.get(0).id + "/Arrivals")
-                .request(MediaType.APPLICATION_JSON_TYPE)
-                .get(new GenericType<ArrayList<Bus>>() {
-                });
+        for (int i = 0; i < 5; i++) {
+            BusStop stop = new BusStop();
+            stop.commonName = busID.stopPoints.get(i).commonName;
 
-        // Make BusInfo object
-        BusInfo busInfo = new BusInfo(busList);
+            ArrayList<Bus> busList = client
+                    .target("https://api-argon.tfl.gov.uk/StopPoint/" + busID.stopPoints.get(i).id + "/Arrivals")
+                    .request(MediaType.APPLICATION_JSON_TYPE)
+                    .get(new GenericType<ArrayList<Bus>>() {
+                    });
+
+            ArrayList<Bus> closestBusList = ClosestBuses.getCloseBuses(busList);
+            stop.buses = closestBusList;
+
+            busStops.add(stop);
+        }
+
+
+        // Make Model object
+        Model model = new Model();
+        model.pageTitle = "My Bus Information";
+        model.busStops = busStops;
+
+
+
+//        BusStop busStop = new BusStop(busID);
 
         // Generate HTML
-        return new ModelAndView("info", "busInfo", busInfo) ;
+        return new ModelAndView("info", "model", model) ;
     }
 
     public static void main(String[] args) throws Exception {

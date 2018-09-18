@@ -7,14 +7,22 @@
 </head>
 <body>
 <div layout:fragment="content" class="container body-content">
-    <h2>Bus Information</h2>
-    <div>
-        <ol>
-            <li th:each="mybus: ${busInfo.buses}">
-                The bus number <span th:text="${mybus.lineName}"></span> is coming in <span th:text="${mybus.timeToStation}"></span> seconds
-            </li>
-        </ol>
+
+    <h2 th:text="${model.pageTitle}"></h2>
+
+
+    <div th:each="mystop: ${model.busStops}">
+        <h5 th:text="${mystop.commonName}"></h5>
+        <div>
+            <ol>
+                <li th:each="mybus: ${mystop.buses}">
+                    The bus number <span th:text="${mybus.lineName}"></span> is coming in <span th:text="${mybus.timeToStation}"></span> mins
+                </li>
+            </ol>
+        </div>
     </div>
+
+
 </div>
 </body>
 </html>

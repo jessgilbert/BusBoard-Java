@@ -3,19 +3,24 @@ package training.busboard;
 //everything we need to import//
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.text.DecimalFormat;
+
 //ignores all the other parameters we have not included//
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Bus {
 
     //initialises time and name//
-
-    public int timeToStation;
+    public double timeToStation;
     public String lineName;
 
     //returns time//
     public int getTimeToStation(){
 
-        return timeToStation;
+        double time = timeToStation / 60;
+        Math.rint(time);
+        int timeInMinutes = (int) time;
+        return timeInMinutes;
+
     }
 
     //returns name//
@@ -23,7 +28,5 @@ public class Bus {
 
         return lineName;
     }
-
-
 
 }

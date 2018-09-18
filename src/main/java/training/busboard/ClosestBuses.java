@@ -14,7 +14,8 @@ public class ClosestBuses {
         Collections.sort(busList, Comparator.comparing(Bus::getTimeToStation));
 
         //for loop pust the first 5 closest buses//
-        for(int i = 0; i < 5; i++){
+        int numberOfBusesToGet = Math.min(5, busList.size());
+        for(int i = 0; i < numberOfBusesToGet; i++){
             closestFive.add(busList.get(i));
         }
         return closestFive;
