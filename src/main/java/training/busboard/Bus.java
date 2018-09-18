@@ -12,6 +12,7 @@ public class Bus {
     //initialises time and name//
     public double timeToStation;
     public String lineName;
+    public String destinationName;
 
     //returns time//
     public int getTimeToStation(){
@@ -21,6 +22,10 @@ public class Bus {
         int timeInMinutes = (int) time;
         return timeInMinutes;
 
+    }
+
+    public String getDestinationName() {
+        return destinationName;
     }
 
     //returns name//
