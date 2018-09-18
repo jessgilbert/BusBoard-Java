@@ -8,9 +8,9 @@
 <body>
 <div layout:fragment="content" class="container body-content">
 
-    <h2 th:text="${model.pageTitle}"></h2>
+    <h2>My Bus Information</h2>
 
-
+    <!-- This is a nested for loop that displays all the busStops and then the buses that are due-->
     <div th:each="mystop: ${model.busStops}">
         <h5 th:text="${mystop.commonName}"></h5>
         <div>

@@ -1,29 +1,12 @@
 package training.busboard.web;
 
-import training.busboard.Bus;
-import training.busboard.ClosestBuses;
-
+//everything we import//
 import java.util.ArrayList;
 
 public class Model {
 
-    public String pageTitle;
-
+    //array with all the busStops in//
     public ArrayList<BusStop> busStops;
-
-
-//
-//    public Model(ArrayList<Bus> busList){
-//
-//        //Orders buses and returns closest five//
-//       this.buses = ClosestBuses.getCloseBuses(busList);
-//
-//    }
-//
-//    public ArrayList<Bus> getBuses() {
-//        return buses;
-//    }
-
 
 }
 

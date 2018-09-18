@@ -13,6 +13,7 @@ import java.util.*;
 public class Main {
     public static void main(String args[]) {
 
+
         //creates builder for json reader//
         Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
 
@@ -20,11 +21,9 @@ public class Main {
         String postCode = getInputPostcode();
 
 
-
-
         //creates Coordinates and CoordinatesResult object, gets Long and Lat//
         Coordinates postcodeInfo = client
-                .target("https://api.postcodes.io/postcodes/" +getInputPostcode())
+                .target("https://api.postcodes.io/postcodes/" +postCode)
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .get(new GenericType<Coordinates>() {});
 
