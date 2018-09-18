@@ -10,4 +10,6 @@ public class BusStopIDStopPoints {
     //returns bus stop id//
     public String id;
 
+    public String commonName;
+
 }

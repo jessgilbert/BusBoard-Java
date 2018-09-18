@@ -8,17 +8,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Bus {
 
     //initialises time and name//
+
     public int timeToStation;
     public String lineName;
 
     //returns time//
-    public int getTime(){
+    public int getTimeToStation(){
+
         return timeToStation;
     }
 
     //returns name//
-    public String getBusName(){
+    public String getLineName(){
+
         return lineName;
     }
+
+
 
 }

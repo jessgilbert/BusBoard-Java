@@ -2,6 +2,7 @@ package training.busboard;
 
 //import everything we need//
 import org.glassfish.jersey.jackson.JacksonFeature;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
@@ -18,9 +19,12 @@ public class Main {
         //gets your post code//
         String postCode = getInputPostcode();
 
+
+
+
         //creates Coordinates and CoordinatesResult object, gets Long and Lat//
         Coordinates postcodeInfo = client
-                .target("https://api.postcodes.io/postcodes/" + postCode)
+                .target("https://api.postcodes.io/postcodes/" +getInputPostcode())
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .get(new GenericType<Coordinates>() {});
 
@@ -46,7 +50,7 @@ public class Main {
                 .get(new GenericType<ArrayList<Bus>>() {});
 
         //displays all the names and buses//
-        display(getClosestBuses(busList));
+        display(ClosestBuses.getCloseBuses(busList));
 
 
     }
@@ -64,28 +68,16 @@ public class Main {
 
     }
 
+
     public static void display(ArrayList<Bus> busList){
 
         //itterates through list and shows time and name for each bus//
         for(int i = 0; i < busList.size(); i++){
-            System.out.println("Bus name: " + busList.get(i).getBusName() + " in " + busList.get(i).getTime() + " seconds ");
+            System.out.println("Bus name: " + busList.get(i).getLineName() + " in " + busList.get(i).getTimeToStation() + " seconds ");
 
         }
     }
 
-    public static ArrayList<Bus> getClosestBuses(ArrayList<Bus> busList){
-        //create new list//
-        ArrayList<Bus> closestFive = new ArrayList<>();
-
-        //sorts the objects in order of smallest time//
-        Collections.sort(busList, Comparator.comparing(Bus::getTime));
-
-        //for loop pust the first 5 closest buses//
-        for(int i = 0; i < 5; i++){
-            closestFive.add(busList.get(i));
-        }
-        return closestFive;
-    }
 
     public static String getInputPostcode() {
         //creates scanner//

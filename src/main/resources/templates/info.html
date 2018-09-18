@@ -9,7 +9,11 @@
 <div layout:fragment="content" class="container body-content">
     <h2>Bus Information</h2>
     <div>
-        <p>You entered postcode <span th:text="${busInfo.postcode}"></span></p>
+        <ol>
+            <li th:each="mybus: ${busInfo.buses}">
+                The bus number <span th:text="${mybus.lineName}"></span> is coming in <span th:text="${mybus.timeToStation}"></span> seconds
+            </li>
+        </ol>
     </div>
 </div>
 </body>
