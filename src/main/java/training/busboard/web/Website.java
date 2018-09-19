@@ -29,6 +29,11 @@ public class Website {
         return new ModelAndView("index","homeModel",homeModel);
     }
 
+    @RequestMapping("/aboutus")
+    ModelAndView aboutUs() {
+        AboutUs aboutUs = new AboutUs();
+        return new ModelAndView("aboutus", "AboutUs", aboutUs);
+    }
 
     //requests postcode as string//
     @RequestMapping("/busInfo")
