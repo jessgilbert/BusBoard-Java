@@ -6,12 +6,31 @@
     <title>Home page</title>
     <!--styles the html file using css-->
     <style>
+
         #errorMessage{
             width: 25%;
             text-align: center;
         }
-        #messageForm{
+
+        #box{
+            background-color: #6c757d;
+            padding: 2%;
+            width: 30%;
+
         }
+        #textBox{
+            padding: 1%;
+            width: 100%;
+        }
+
+        #title{
+            background-color: #343a40;
+            color: white;
+            width: 18%;
+            text-align: left;
+            padding: 1%;
+        }
+
     </style>
 </head>
 <body>
@@ -29,9 +48,12 @@
         <div class="col-md-12">
             <form id="messageForm" th:action="@{/busInfo}" method="get">
                 <fieldset>
-                    <legend>Please enter Postcode: </legend>
-                    <input type="text" name="postcode">
-                    <input type="submit" value="Get Bus Info" />
+                    <legend id="title">Plan a journey:</legend>
+                    <div id="box">
+                        <input id="textBox" type="text" name="postcode" value="Enter postcode...">
+                        <p></p>
+                        <input type="submit" value="Plan my journey"/>
+                    </div>
                 </fieldset>
             </form>
         </div>

@@ -4,7 +4,7 @@
       layout:decorate="layout">
 <head>
     <!--refreshes page every 30 seconds-->
-    <meta http-equiv="refresh" content="30">
+    <meta http-equiv="refresh" content="10">
 
     <!--styles the html file using css-->
     <style>
@@ -32,12 +32,13 @@
             width: 7.5%;
             color: white;
             font-weight: bold;
+            text-shadow: 1px 1px black;
         }
         #destination{
             text-align: left;
             width: 62.5%;
         }
-        #time{
+        .time{
             text-align: right;
             width: 30%;
         }
@@ -55,11 +56,13 @@
         <h4 th:text="${mystop.commonName}"  id="stopName"></h4>
         <div>
 
-            <table  style="width:100%">
+            <table  style="width:100%" class="table table-striped">
                 <tr th:each="mybus: ${mystop.buses}">
                     <td bgcolor="#D51B1B" id="line"><span th:text="${mybus.lineName}"></span></td>
                     <td id="destination"><span th:text="${mybus.destinationName}"></span></td>
-                    <td id="time"><span th:text="${mybus.timeToStation}"></span> mins</td>
+                    <td class="time" th:if="${mybus.timeToStation != 0}" ><span th:text="${mybus.timeToStation}"></span> min</td>
+                    <td class="time" th:if="${mybus.timeToStation == 0}">due</td>
+
                 </tr>
 
             </table>

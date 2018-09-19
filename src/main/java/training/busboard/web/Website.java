@@ -89,8 +89,9 @@ public class Website {
         //creates an array for busStop object//
         ArrayList<BusStop> busStops = new ArrayList<>();
 
+
         //for loop that iterates through the BusStops and puts them in the Array//
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             //creates new object BusStop//
             BusStop stop = new BusStop();
 
@@ -99,7 +100,11 @@ public class Website {
             String id = busID.stopPoints.get(i).stopLetter;
 
             //creates string and makes it equal to commonName within object stop//
-            stop.commonName = name + " (Stop " + id + ")";
+            if(id == null){
+                stop.commonName = name;
+            }else {
+                stop.commonName = name + " (Stop " + id + ")";
+            }
 
             //creates an array full of object Bus that are coming to that stop//
             ArrayList<Bus> busList = client
