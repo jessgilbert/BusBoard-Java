@@ -25,7 +25,8 @@ public class Website {
     // when it is just "/" it tells it to go to index.html//
     @RequestMapping("/")
     ModelAndView home() {
-        return new ModelAndView("index");
+        HomeModel homeModel = new HomeModel();
+        return new ModelAndView("index","homeModel",homeModel);
     }
 
 
@@ -36,11 +37,21 @@ public class Website {
         //creates builder for json reader//
         Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
 
+        Coordinates postcodeInfo = null;
+
         //creates Coordinates and CoordinatesResult object, gets Long and Lat//
-        Coordinates postcodeInfo = client
-                .target("https://api.postcodes.io/postcodes/" + postcode)
-                .request(MediaType.APPLICATION_JSON_TYPE)
-                .get(new GenericType<Coordinates>() {});
+         try {
+             postcodeInfo = client
+                     .target("https://api.postcodes.io/postcodes/" + postcode)
+                     .request(MediaType.APPLICATION_JSON_TYPE)
+                     .get(new GenericType<Coordinates>() {});
+
+         } catch (Exception e) {
+             HomeModel homeModel = new HomeModel();
+             homeModel.error = "Invalid Postcode!";
+             return new ModelAndView("index","homeModel", homeModel);
+         }
+
 
         //gets the busStop id from long and lat input as an Object "BusStopID"//
         BusStopID busID = client

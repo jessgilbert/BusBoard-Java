@@ -11,6 +11,11 @@
         <h1>BusBoard</h1>
         <p class="lead">For all your bus info needs. Enter a postcode below and click enter to see bus times for that location.</p>
     </div>
+
+    <div th:if="${homeModel.error != null}">
+        <h2 th:text="${homeModel.error}"></h2>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <form id="messageForm" th:action="@{/busInfo}" method="get">
