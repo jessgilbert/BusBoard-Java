@@ -4,6 +4,18 @@
       layout:decorate="layout">
 <head>
     <title>Home page</title>
+
+    <!--styles the html file using css-->
+    <style>
+        #errorMessage{
+            width: 25%;
+            text-align: center;
+        }
+        #messageForm{
+
+        }
+    </style>
+
 </head>
 <body>
 <div layout:fragment="content" class="container body-content">
@@ -12,15 +24,15 @@
         <p class="lead">For all your bus info needs. Enter a postcode below and click enter to see bus times for that location.</p>
     </div>
 
-    <div th:if="${homeModel.error != null}">
-        <h2 th:text="${homeModel.error}"></h2>
+    <div th:if="${homeModel.error != null}" id="errorMessage" class="alert alert-danger">
+        <h4 th:text="${homeModel.error}"></h4>
     </div>
 
     <div class="row">
         <div class="col-md-12">
             <form id="messageForm" th:action="@{/busInfo}" method="get">
                 <fieldset>
-                    <legend>Postcode: </legend>
+                    <legend>Please enter Postcode: </legend>
                     <input type="text" name="postcode">
                     <input type="submit" value="Get Bus Info" />
                 </fieldset>
