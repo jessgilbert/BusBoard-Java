@@ -1,18 +1,13 @@
 <!DOCTYPE html>
-<html lang="en"xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorate="layout">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
 <head>
     <meta charset="UTF-8">
-    <title> About Us </title>
+    <title>About Us</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" th:href="@{/}">Bus Finder</a>
-    <a class="navbar-brand" th:href="@{/aboutus}">About Us</a>
-</nav>
-    <div>
-        <h1>About us</h1>
+    <div layout:fragment="content" class="container body-content">
     </div>
 </body>
 </html>
