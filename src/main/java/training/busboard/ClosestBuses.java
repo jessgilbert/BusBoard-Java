@@ -13,7 +13,7 @@ public class ClosestBuses {
         //sorts the objects in order of smallest time//
         Collections.sort(busList, Comparator.comparing(Bus::getTimeToStation));
 
-        //for loop pust the first 5 closest buses//
+        //for loop puts the first 5 closest buses//
         int numberOfBusesToGet = Math.min(5, busList.size());
         for(int i = 0; i < numberOfBusesToGet; i++){
             closestFive.add(busList.get(i));

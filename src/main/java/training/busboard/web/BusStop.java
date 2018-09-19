@@ -12,6 +12,7 @@ public class BusStop {
 
     //creates string for name of busStop//
     public String commonName;
+
     //the array with all the buses for the busStop//
     public ArrayList<Bus> buses;
 
