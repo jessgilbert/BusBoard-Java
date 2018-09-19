@@ -10,7 +10,6 @@ public class BusStopID {
     //gets the results for the id of the stops as a list //
     public List<BusStopIDStopPoints> stopPoints;
 
-
 }
 
 

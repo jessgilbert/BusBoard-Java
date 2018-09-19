@@ -57,8 +57,12 @@ public class Website {
             //creates new object BusStop//
             BusStop stop = new BusStop();
 
-            //makes commonName in BusStop object equal to its common name//
-            stop.commonName = busID.stopPoints.get(i).commonName;
+            //gets the name and the id of the busStop from busID//
+            String name = busID.stopPoints.get(i).commonName;
+            String id = busID.stopPoints.get(i).stopLetter;
+
+            //creates string and makes it equal to commonName within object stop//
+            stop.commonName = name + " (Stop " + id + ")";
 
             //creates an array full of object Bus that are coming to that stop//
             ArrayList<Bus> busList = client
